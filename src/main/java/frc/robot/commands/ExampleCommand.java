@@ -8,28 +8,24 @@ import frc.robot.subsystems.RomiDrivetrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class XboxController extends CommandBase {
+public class ExampleCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final RomiDrivetrain m_db;
+  private final RomiDrivetrain m_subsystem;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-
-  public Xboxcontroller(RomiDrivetrain xboxController) {
-    m_db = xboxController;
+  public ExampleCommand(RomiDrivetrain subsystem) {
+    m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(xboxController);
+    addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    //goes through arcadeDrive and calls getLeftX() and getLeftY()
-    m_db.arcadeDrive(RobotContainer.m_xboxController.getLeftX(), RobotContainer.m_xboxController.getLeftY());
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

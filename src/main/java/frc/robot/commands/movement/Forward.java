@@ -21,6 +21,7 @@ public class Forward extends CommandBase {
    */
   public Forward(RomiDrivetrain db, double inches) {
     m_db = db;
+    //This checks if the number is negative, the robot will not go forward, but if it's not negative instead the robot will go forward
     if ( inches > 0){
       distance = inches;
     }
@@ -30,27 +31,32 @@ public class Forward extends CommandBase {
     addRequirements(db);
 }
 
+ 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    //resets the encoder
     m_db.resetEncoders();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //moves the robot forward 
     m_db.arcadeDrive(0.5,0);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    //stops the robot from moving
     db.arcadeDrive(0,0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (m_forward.getAverageDistance() >= distance);
+    //checks constantly if the robot has passed a certain distance
+    return (m_db.getAverageDistance() >= distance);
   }
 }
